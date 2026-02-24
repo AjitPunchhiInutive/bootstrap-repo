@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "sw-iac-tfstate"
+    bucket = "itp-terraform-tfstate"
     prefix = "gcp-bootstrap/state"
   }
 }
