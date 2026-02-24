@@ -1,7 +1,7 @@
 deploy: true
 organization_id: "203589767236"
 parent_folders:
-  sw-unified-demo-platform-in:
+  sw-unified-demo-platform-demo:
       display_name: "sw-unified-demo-platform-in"
 # sub_folders:
 #   sw-udp-production:
