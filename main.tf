@@ -29,6 +29,6 @@ locals {
 # }
 
   module "folders" {
-  source          = "git@github.com:AjitPunchhiInutive/simple-module.git//folders?ref=main"
+  source          = "git@github.com:AjitPunchhiInutive/bootstrap-repo.git//folders?ref=main"
   folders_objects = local.folders_objects
 }
