@@ -1,4 +1,4 @@
-output "folders" {
+output "wif_factory" {
   description = "Folder module outputs"
-  value       = module.folders
+  value       = module.wif_factory
 }
