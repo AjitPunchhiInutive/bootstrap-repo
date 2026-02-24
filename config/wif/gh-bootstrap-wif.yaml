@@ -6,10 +6,11 @@ provider_display_name: gha-bootstrap-provider-demo
 project_id: melodic-furnace-403022
 repository_owner: demo
 sa_account_id: gha-bootstrap-wif-sa
-sa_display_name: GHA Bootstrap WIF Service Account
+sa_display_name: GHA Bootstrap WIF Service Account email
 sa_description: Service account for GHA Bootstrap with Workload Identity Federation
 project_roles:
   - roles/storage.admin
+  - roles/storage.read
   - roles/iam.serviceAccountAdmin
   - roles/iam.workloadIdentityPoolAdmin
 org_id: "203589767236"
