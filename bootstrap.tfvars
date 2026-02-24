@@ -5,7 +5,7 @@ gcp_project     = "melodic-furnace-403022"
 region          = "us"
 zone            = "us-east4-a"
 organization_id = "203589767236"
-owner           = "southwire"
+owner           = "test"
 
 default_labels = {
   cost-center = "xxxx"
