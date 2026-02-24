@@ -1,4 +1,4 @@
-deploy: true
+deploy: false
 organization_id: "203589767236"
 parent_folders:
   sw-unified-demo-platform-demo:
