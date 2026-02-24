@@ -14,7 +14,7 @@ locals {
 
   # WIF: list from config/wif/*.yaml
   wif_config_files = fileset("config/wif", "*.yaml")
-  wif_objects = [for f in local.wif_config_files : yamldecode(templatefile("config/wif/${f}"))]
+  wif_objects = [for f in local.wif_config_files : yamldecode(file("config/wif/${f}"))]
 
 #   # Folders: single object from config/folders.yaml (module expects only organization_id, parent_folders, sub_folders)
 #   folder_config_files = fileset("config/folders", "*.yaml")
