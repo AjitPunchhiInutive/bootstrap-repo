@@ -111,16 +111,13 @@ jobs:
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo " Approval granted - proceeding to apply"
 
-
-
-  terraform-apply:
-    name: Terraform Apply
+  terraform-plan-after-approval:
+    name: Terraform Plan (Post Approval)
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
-      actions: read
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      actions:  read
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -129,10 +126,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup SSH key for private module access
+      - name: Setup SSH Key for Private Module Access
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY  }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -142,18 +139,81 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          project_id:  ${{ secrets.GCP_PROJECT_ID }}
+          project_id:                 ${{ secrets.GCP_PROJECT_ID }}
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          gcp_service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+          service_account:            ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
 
       - name: Terraform Init
         run: terraform init
 
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Fresh plan after approval — this is the plan that will be applied
+      - name: Terraform Plan
+        run: terraform plan -var-file=bootstrap.tfvars -out=tfplan
+
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name:           tfplan-after-approval
+          path:           ${{ env.WORKING_DIR }}/tfplan
+          retention-days: 1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# APPLY — Runs after the second plan succeeds
+# Uses the fresh plan generated after approval
+# ─────────────────────────────────────────────────────────────────────────────
+  terraform-apply:
+    name: Terraform Apply
+    needs: terraform-plan-after-approval
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      actions:  read
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key for Private Module Access
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          project_id:                 ${{ secrets.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account:            ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      # Download the fresh plan generated after approval
       - name: Download Plan Artifact
         uses: actions/download-artifact@v4
         with:
-          name: tfplan
+          name: tfplan-after-approval
           path: ${{ env.WORKING_DIR }}
 
-      - name: Terraform Apply (reviewed plan)
+      - name: Terraform Apply
         run: terraform apply tfplan
+
+      - name: Apply Complete
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Terraform Apply completed successfully"
+          echo "   Environment : ${{ env.ENVIRONMENT }}"
+          echo "   Applied by  : ${{ github.actor }}"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

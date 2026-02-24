@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "itp-terraform-tfstate"
+    bucket = "itp-terraform-test"
     prefix = "gcp-bootstrap/state"
   }
 }
