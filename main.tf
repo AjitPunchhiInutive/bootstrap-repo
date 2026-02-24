@@ -24,7 +24,7 @@ locals {
 }
 
 module "wif_factory" {
-  source                         = "git@github.com:southwire-company/gcp-shared-terraform-modules.git//wif-factory?ref=main"
+  source                         = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//wif-factory?ref=main"
   github_workload_identity_factory = local.wif_objects
 }
 
