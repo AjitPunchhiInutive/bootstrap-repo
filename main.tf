@@ -19,7 +19,7 @@ locals {
   # Folders: single object from config/folders.yaml (module expects only organization_id, parent_folders, sub_folders)
   folder_config_files = fileset("config/folders", "*.yaml")
   folders_raw         = length(local.folder_config_files) > 0 ? yamldecode(templatefile("config/folders/folders.yaml", local.template_vars)) : null
-  folders_objects     = local.folders_raw != null ? { organization_id = local.folders_raw.organization_id, parent_folders = local.folders_raw.parent_folders, sub_folders = local.folders_raw.sub_folders } : { organization_id = var.organization_id, parent_folders = {}, sub_folders = {} }
+  #folders_objects     = local.folders_raw != null ? { organization_id = local.folders_raw.organization_id, parent_folders = local.folders_raw.parent_folders, sub_folders = local.folders_raw.sub_folders } : { organization_id = var.organization_id, parent_folders = {}, sub_folders = {} }
 
 }
 
