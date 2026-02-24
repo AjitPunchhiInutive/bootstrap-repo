@@ -10,7 +10,7 @@ on:
 env:
   TF_VERSION: "1.6.3"
   WORKING_DIR: "."
-  ENVIRONMENT: "dev"
+  #ENVIRONMENT: "dev"
   TFSEC_VERSION: "1.28.6"
 
 jobs:
@@ -214,7 +214,5 @@ jobs:
       - name: Apply Complete
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅ Terraform Apply completed successfully"
-          echo "   Environment : ${{ env.ENVIRONMENT }}"
-          echo "   Applied by  : ${{ github.actor }}"
+          echo "Terraform Apply completed successfully"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
