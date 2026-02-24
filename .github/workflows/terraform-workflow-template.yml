@@ -93,6 +93,7 @@ jobs:
         with:
           name: tfplan
           path: ${{ env.WORKING_DIR }}/tfplan
+          retention-days:    1
 
   approval:
     needs: terraform-plan
@@ -112,6 +113,7 @@ jobs:
 
   terraform-plan-after-approval:
     name: Terraform Plan (Post Approval)
+    needs: approval
     runs-on: ubuntu-latest
     permissions:
       contents: read
