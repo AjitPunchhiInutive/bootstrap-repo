@@ -1,6 +1,6 @@
 environment     = "dev"
 environment_key = "d"
-bucket_name     = "itp-terraform-tfstate"
+bucket_name     = "itp-terraform-test"
 gcp_project     = "melodic-furnace-403022"
 region          = "us"
 zone            = "us-east4-a"
