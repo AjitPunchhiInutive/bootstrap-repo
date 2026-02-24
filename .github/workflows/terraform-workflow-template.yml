@@ -33,7 +33,6 @@ jobs:
       - name: Setup SSH Key for Private Module Access
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-public-key: ${{ secrets.ssh_public_key }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Setup Terraform
