@@ -13,6 +13,7 @@ project_roles:
   - roles/iam.serviceAccountAdmin
   - roles/iam.workloadIdentityPoolAdmin
   - roles/compute.networkAdmin
+  - roles/compute.networkViewer
 org_id: "203589767236"
 org_roles:
   - roles/iam.organizationRoleAdmin
