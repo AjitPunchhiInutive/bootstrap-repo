@@ -1,12 +1,12 @@
-variable "environment" {
-  description = "Environment name (e.g. dev, staging, prod)"
-  type        = string
-}
+# variable "environment" {
+#   description = "Environment name (e.g. dev, staging, prod)"
+#   type        = string
+# }
 
-variable "environment_key" {
-  description = "Short environment key used in naming (e.g. d, s, p)"
-  type        = string
-}
+# variable "environment_key" {
+#   description = "Short environment key used in naming (e.g. d, s, p)"
+#   type        = string
+# }
 
 variable "bucket_name" {
   description = "GCS bucket name for Terraform remote state"
@@ -33,17 +33,17 @@ variable "organization_id" {
   type        = string
 }
 
-variable "owner" {
-  description = "Owner identifier applied as a default label"
-  type        = string
-}
+# variable "owner" {
+#   description = "Owner identifier applied as a default label"
+#   type        = string
+# }
 
-variable "default_labels" {
-  description = "Default labels applied to all resources (cost-center, provisioner, sensitivity)"
-  type        = map(string)
-  default = {
-    cost-center = "xxxx"
-    provisioner = "terraform"
-    sensitivity = "restricted"
-  }
-}
+# variable "default_labels" {
+#   description = "Default labels applied to all resources (cost-center, provisioner, sensitivity)"
+#   type        = map(string)
+#   default = {
+#     cost-center = "xxxx"
+#     provisioner = "terraform"
+#     sensitivity = "restricted"
+#   }
+# }
