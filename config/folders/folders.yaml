@@ -6,10 +6,10 @@ parent_folders:
 sub_folders:
   sw-udp-production:
     display_name: "sw-udp-production"
-    parent_folder: "sw-unified-data-platform" 
+    parent_folder: "sw-unified-demo-platform-demo" 
   sw-udp-non-prod:
     display_name: "sw-udp-non-prod"
-    parent_folder: "sw-unified-data-platform"
+    parent_folder: "sw-unified-demo-platform-demo"
   sw-udp-sandbox:
     display_name: "sw-udp-sandbox"
-    parent_folder: "sw-unified-data-platform"
+    parent_folder: "sw-unified-demo-platform-demo"
