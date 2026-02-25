@@ -12,6 +12,7 @@ project_roles:
   - roles/storage.admin
   - roles/iam.serviceAccountAdmin
   - roles/iam.workloadIdentityPoolAdmin
+  - roles/compute.networkAdmin
 org_id: "203589767236"
 org_roles:
   - roles/iam.organizationRoleAdmin
