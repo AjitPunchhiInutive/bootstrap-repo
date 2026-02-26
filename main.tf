@@ -1,16 +1,4 @@
 locals {
-#   default_cost_center = lookup(var.default_labels, "cost-center", "xxxx")
-
-#   all_labels = merge(var.default_labels, {
-#     lifecycle = var.environment
-#     owner     = var.owner
-#   })
-
-#   template_vars = {
-#     environment_key     = var.environment_key
-#     lifecycle           = var.environment
-#     default_cost_center = local.default_cost_center
-#   }
 
   # WIF: list from config/wif/*.yaml
   wif_config_files = fileset("config/wif", "*.yaml")
@@ -21,8 +9,11 @@ locals {
   folders_raw         = length(local.folder_config_files) > 0 ? yamldecode(file("config/folders/folders.yaml")) : null
   folders_objects     = local.folders_raw != null ? { organization_id = local.folders_raw.organization_id, parent_folders = local.folders_raw.parent_folders, sub_folders = local.folders_raw.sub_folders } : { organization_id = var.organization_id, parent_folders = {}, sub_folders = {} }
 
+  #project
+  project_config_files = fileset("config/projects", "*.yaml")
+  project_objects = [for f in local.project_config_files : yamldecode(file("${path.module}/config/projects/${f}"))]
 }
-
+  # Projects: list from config/projects/*.yaml
 module "wif_factory" {
   source                         = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//wif-factory?ref=main"
   github_workload_identity_factory = local.wif_objects
@@ -30,5 +21,10 @@ module "wif_factory" {
 
   module "folders" {
   source          = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//folders?ref=main"
+  folders_objects = local.folders_objects
+}
+
+module "project-factory" {
+  source          = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//project-factory?ref=main"
   folders_objects = local.folders_objects
 }
