@@ -8,9 +8,6 @@ labels:
   lifecycle: "${lifecycle}"
 deletion_policy: PREVENT
 auto_create_network: false
-oslogin: true
-oslogin_admins: demo@intuitive.ai
-oslogin_users: demo@intuitive.ai
 parent: folders/1048391613319
 services:
   - cloudbilling.googleapis.com
