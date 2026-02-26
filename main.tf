@@ -10,8 +10,8 @@ locals {
   folders_objects     = local.folders_raw != null ? { organization_id = local.folders_raw.organization_id, parent_folders = local.folders_raw.parent_folders, sub_folders = local.folders_raw.sub_folders } : { organization_id = var.organization_id, parent_folders = {}, sub_folders = {} }
 
   
-  project_config_files = fileset("config/projects", "*.yaml")
-  project_objects = [for f in local.project_config_files : yamldecode(file("${path.module}/config/projects/${f}"))]
+  project_config_files = fileset("config/project-factory", "*.yaml")
+  project_objects = [for f in local.project_config_files : yamldecode(file("config/project-factory/${f}"))]
 }
   # Projects: list from config/projects/*.yaml
 module "wif_factory" {
