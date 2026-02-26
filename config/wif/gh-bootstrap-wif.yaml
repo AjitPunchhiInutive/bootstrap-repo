@@ -1,4 +1,4 @@
-deploy: true
+deploy: false
 pool_id: gha-bootstrap-pool-demo
 pool_display_name: gha-bootstrap-pool-demo
 provider_id: gha-bootstrap-provider-demo
