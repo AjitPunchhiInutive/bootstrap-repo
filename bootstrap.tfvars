@@ -7,8 +7,8 @@ zone            = "us-east4-a"
 organization_id = "203589767236"
 #owner           = "southwire-companyh"
 
-default_labels = {
-  cost-center = "xxxx"
-  provisioner = "terraform"
-  sensitivity = "restricted"
-}
+# default_labels = {
+#   cost-center = "xxxx"
+#   provisioner = "terraform"
+#   sensitivity = "restricted"
+# }
