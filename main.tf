@@ -26,5 +26,5 @@ module "wif_factory" {
 
 module "project-factory" {
   source          = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//project-factory?ref=main"
-  folders_objects = local.folders_objects
+  project_objects = local.project_objects
 }
