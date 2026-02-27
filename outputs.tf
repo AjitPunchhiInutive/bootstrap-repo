@@ -3,8 +3,8 @@ output "wif_factory" {
   value       = module.wif_factory
 }
 
-output "project-factory" {
-    description = "Project "
-    value = module.project-factory
+# output "project-factory" {
+#     description = "Project "
+#     value = module.project-factory
   
-}
+# }
