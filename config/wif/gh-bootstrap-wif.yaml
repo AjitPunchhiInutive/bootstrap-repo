@@ -21,11 +21,11 @@ org_roles:
   - roles/resourcemanager.folderCreator
 folder_roles:
   - folder_id: "1048391613319"
-    roles: "roles/securitycenter.admin"
+  - roles: "roles/securitycenter.admin"
   - folder_id: "696074960557"
-    roles: "roles/securitycenter.admin"
+  - roles: "roles/securitycenter.admin"
   - folder_id: "749575608107"
-    roles: "roles/securitycenter.admin"
+  - roles: "roles/securitycenter.admin"
 sa_mapping:
   gcp-bootstrap-foundation:
     sa_name: projects/melodic-furnace-403022/serviceAccounts/gha-bootstrap-wif-sa@melodic-furnace-403022.iam.gserviceaccount.com
