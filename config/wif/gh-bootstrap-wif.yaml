@@ -1,4 +1,4 @@
-deploy: true
+deploy: false
 pool_id: gha-bootstrap-pool-demo
 pool_display_name: gha-bootstrap-pool-demo
 provider_id: gha-bootstrap-provider-demo
@@ -6,16 +6,26 @@ provider_display_name: gha-bootstrap-provider-demo
 project_id: melodic-furnace-403022
 repository_owner: demo
 sa_account_id: gha-bootstrap-wif-sa
-sa_display_name: GHA Bootstrap WIF Service Account email
+sa_display_name: GHA Bootstrap WIF Service Account 
 sa_description: Service account for GHA Bootstrap with Workload Identity Federation
 project_roles:
+  - roles/storage.admin
   - roles/iam.serviceAccountAdmin
   - roles/iam.workloadIdentityPoolAdmin
+  - roles/compute.networkAdmin
+  - roles/compute.networkViewer
 org_id: "203589767236"
 org_roles:
   - roles/iam.organizationRoleAdmin
   - roles/resourcemanager.organizationViewer
   - roles/resourcemanager.folderCreator
+folder_roles:
+  - folder_id: "1048391613319"
+  - roles: "roles/securitycenter.admin"
+  - folder_id: "696074960557"
+  - roles: "roles/securitycenter.admin"
+  - folder_id: "749575608107"
+  - roles: "roles/securitycenter.admin"
 sa_mapping:
   gcp-bootstrap-foundation:
     sa_name: projects/melodic-furnace-403022/serviceAccounts/gha-bootstrap-wif-sa@melodic-furnace-403022.iam.gserviceaccount.com

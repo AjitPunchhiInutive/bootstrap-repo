@@ -17,12 +17,10 @@ provider "google" {
   project        = var.gcp_project
   region         = var.region
   zone           = var.zone
-  default_labels = local.all_labels
 }
 
 provider "google-beta" {
   project        = var.gcp_project
   region         = var.region
   zone           = var.zone
-  default_labels = local.all_labels
 }
