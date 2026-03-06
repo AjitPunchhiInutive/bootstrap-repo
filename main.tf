@@ -1,8 +1,8 @@
 locals {
 
-  # WIF: list from config/wif/*.yaml
-  wif_config_files = fileset("config/wif", "*.yaml")
-  wif_objects = [for f in local.wif_config_files : yamldecode(file("config/wif/${f}"))]
+  # # WIF: list from config/wif/*.yaml
+  # wif_config_files = fileset("config/wif", "*.yaml")
+  # wif_objects = [for f in local.wif_config_files : yamldecode(file("config/wif/${f}"))]
 
   # Folders: single object from config/folders.yaml (module expects only organization_id, parent_folders, sub_folders)
   folder_config_files = fileset("config/folders", "*.yaml")
@@ -13,11 +13,11 @@ locals {
 #   project_config_files = fileset("config/project-factory", "*.yaml")
 #   project_objects = [for f in local.project_config_files : yamldecode(file("config/project-factory/${f}"))]
 }
-  # Projects: list from config/projects/*.yaml
-module "wif_factory" {
-  source                         = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//wif-factory?ref=main"
-  github_workload_identity_factory = local.wif_objects
-}
+#   # Projects: list from config/projects/*.yaml
+# module "wif_factory" {
+#   source                         = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//wif-factory?ref=main"
+#   github_workload_identity_factory = local.wif_objects
+# }
 
   module "folders" {
   source          = "git@github.com:AjitPunchhiInutive/-sw-prod-udp-rds-infra-modules.git//folders?ref=main"
