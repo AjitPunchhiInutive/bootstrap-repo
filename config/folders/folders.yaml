@@ -1,15 +1,15 @@
 deploy: true
 organization_id: "203589767236"
 parent_folders:
-  sw-unified-demo-platform-demo:
-      display_name: "sw-unified-demo-platform-demo"
+  sw-unified-demo-platform-itp:
+      display_name: "sw-unified-demo-platform-itp"
 sub_folders:
-  sw-udp-production:
+  sw-udp-production-itp:
     display_name: "sw-udp-production"
-    parent_folder: "sw-unified-demo-platform-demo" 
+    parent_folder: "sw-unified-demo-platform-itp" 
   sw-udp-non-prod:
     display_name: "sw-udp-non-prod"
-    parent_folder: "sw-unified-demo-platform-demo"
+    parent_folder: "sw-unified-demo-platform-itp"
   sw-udp-sandbox:
     display_name: "sw-udp-sandbox"
-    parent_folder: "sw-unified-demo-platform-demo"
+    parent_folder: "sw-unified-demo-platform-itp"
